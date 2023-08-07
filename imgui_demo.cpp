@@ -2798,7 +2798,7 @@ static void ShowDemoWindowMultiSelect()
                     char label[64];
                     sprintf(label, "Object %05d: %s", n, random_names[n % IM_ARRAYSIZE(random_names)]);
                     bool item_is_selected = selection.GetSelected(n);
-                    ImGui::SetNextItemSelectionData((void*)(intptr_t)n);
+                    ImGui::SetNextItemSelectionUserData((void*)(intptr_t)n);
                     ImGui::Selectable(label, item_is_selected);
                 }
 
@@ -2867,7 +2867,7 @@ static void ShowDemoWindowMultiSelect()
                     sprintf(label, "Object %05d: %s", item_id, random_names[item_id % IM_ARRAYSIZE(random_names)]);
 
                     bool item_is_selected = selection.GetSelected(n);
-                    ImGui::SetNextItemSelectionData((void*)(intptr_t)n);
+                    ImGui::SetNextItemSelectionUserData((void*)(intptr_t)n);
                     ImGui::Selectable(label, item_is_selected);
                     if (ImGui::IsItemToggledSelection())
                         selection.SetSelected(n, !item_is_selected);
@@ -2910,7 +2910,7 @@ static void ShowDemoWindowMultiSelect()
                     char label[64];
                     sprintf(label, "Object %05d: %s", n, random_names[n % IM_ARRAYSIZE(random_names)]);
                     bool item_is_selected = selection->GetSelected(n);
-                    ImGui::SetNextItemSelectionData((void*)(intptr_t)n);
+                    ImGui::SetNextItemSelectionUserData((void*)(intptr_t)n);
                     ImGui::Selectable(label, item_is_selected);
                 }
 
@@ -3002,7 +3002,7 @@ static void ShowDemoWindowMultiSelect()
                 while (!use_clipper || clipper.Step())
                 {
                     // IF clipping is used: you need to set 'RangeSrcPassedBy = true' if RangeSrc was passed over.
-                    // If you submit all items this is unnecessary as this is one by SetNextItemSelectionData()
+                    // If you submit all items this is unnecessary as this is one by SetNextItemSelectionUserData()
                     if (use_clipper && clipper.DisplayStart > (int)(intptr_t)ms_io->RangeSrcItem)
                         ms_io->RangeSrcPassedBy = true;
 
@@ -3034,7 +3034,7 @@ static void ShowDemoWindowMultiSelect()
                         }
 
                         bool item_is_selected = selection.GetSelected(n);
-                        ImGui::SetNextItemSelectionData((void*)(intptr_t)n);
+                        ImGui::SetNextItemSelectionUserData((void*)(intptr_t)n);
                         if (widget_type == WidgetType_Selectable)
                         {
                             ImGui::Selectable(label, item_is_selected);
@@ -3093,7 +3093,7 @@ static void ShowDemoWindowMultiSelect()
                 }
 
                 // If clipping is used: you need to set 'RangeSrcPassedBy = true' if RangeSrc was passed over.
-                // If you submit all items this is unnecessary as this is one by SetNextItemSelectionData()
+                // If you submit all items this is unnecessary as this is one by SetNextItemSelectionUserData()
                 // Here we essentially notify before EndMultiSelect() that RangeSrc is still present in our data set.
                 if (use_clipper && items.Size > (int)(intptr_t)ms_io->RangeSrcItem)
                     ms_io->RangeSrcPassedBy = true;
